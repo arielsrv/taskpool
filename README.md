@@ -1,4 +1,5 @@
 # golang-toolkit
+![Coverage](https://img.shields.io/badge/Coverage-100.0%25-brightgreen)
 
 [![CI](https:      //github.com/tj-actions/coverage-badge-go/workflows/CI/badge.svg)](https://github.com/tj-actions/coverage-badge-go/actions?query=workflow%3ACI)
 ![Coverage](https: //img.shields.io/badge/Coverage-83.4%25-brightgreen)
