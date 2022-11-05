@@ -1,4 +1,4 @@
-module github.com/taskpool
+module github.com/arielsrv/taskpool
 
 go 1.19
 

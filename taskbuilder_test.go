@@ -1,6 +1,7 @@
-package task
+package task_test
 
 import (
+	task "github.com/arielsrv/taskpool"
 	"github.com/stretchr/testify/assert"
 	"log"
 	"math/rand"
@@ -14,16 +15,16 @@ func GetNumber() (int, error) {
 }
 
 func TestBuilder_ForkJoin(t *testing.T) {
-	var future1, future2 *Task[int]
+	var future1, future2 *task.Task[int]
 
-	tb := &Builder{
+	tb := &task.Builder{
 		MaxWorkers: 2,
 	}
 
 	start := time.Now()
-	tb.ForkJoin(func(c *Awaitable) {
-		future1 = Await[int](c, GetNumber)
-		future2 = Await[int](c, GetNumber)
+	tb.ForkJoin(func(c *task.Awaitable) {
+		future1 = task.Await[int](c, GetNumber)
+		future2 = task.Await[int](c, GetNumber)
 	})
 
 	assert.NotNil(t, future1.Result)
