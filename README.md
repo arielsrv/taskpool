@@ -7,10 +7,10 @@
 
 ## Developer tools
 
-- [Golang Lint](https: //golangci-lint.run/)
-- [Golang Task](https: //taskfile.dev/)
+- [Golang Lint](https://golangci-lint.run/)
+- [Golang Task](https://taskfile.dev/)
 - [Golang Dependencies Update](https://github.com/oligot/go-mod-upgrade)
-- [jq](https:                        //stedolan.github.io/jq/)
+- [jq](https://stedolan.github.io/jq/)
 
 ### For macOs
 
