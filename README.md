@@ -31,12 +31,11 @@ go get -u github.com/arielsrv/taskpool
 
 # ⚡️ Quickstart
 
-
 ```go
 package main
 
 import (
-	"github.com/arielsrv/golang-toolkit/task"
+	"github.com/arielsrv/taskpool"
 	"log"
 	"math/rand"
 	"runtime"
@@ -45,7 +44,7 @@ import (
 
 func main() {
 	// generics task, return error is mandatory, @todo: fire and forget
-	var future1, future2, future3 *task.Task[int]
+	var task1, task2, task3 *task.Task[int]
 
 	tb := &task.Builder{
 		MaxWorkers: runtime.NumCPU() - 1,
@@ -53,14 +52,14 @@ func main() {
 
 	start := time.Now()
 	tb.ForkJoin(func(c *task.Awaitable) {
-		future1 = task.Await[int](c, GetNumber)
-		future2 = task.Await[int](c, GetNumber)
-		future3 = task.Await[int](c, GetNumber)
+		task1 = task.Await[int](c, GetNumber)
+		task2 = task.Await[int](c, GetNumber)
+		task3 = task.Await[int](c, GetNumber)
 	})
 
-	log.Println(future1.Result)
-	log.Println(future2.Result)
-	log.Println(future3.Result)
+	log.Println(task1.Result)
+	log.Println(task2.Result)
+	log.Println(task3.Result)
 
 	end := time.Since(start)
 	log.Println(end)
@@ -69,7 +68,6 @@ func main() {
 func GetNumber() (int, error) {
 	value := rand.Int()
 	time.Sleep(time.Millisecond * 1000)
-	log.Println("done ...")
 	return value, nil
 }
 

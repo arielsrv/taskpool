@@ -15,7 +15,7 @@ func GetNumber() (int, error) {
 }
 
 func TestBuilder_ForkJoin(t *testing.T) {
-	var future1, future2 *task.Task[int]
+	var task1, task2 *task.Task[int]
 
 	tb := &task.Builder{
 		MaxWorkers: 2,
@@ -23,17 +23,17 @@ func TestBuilder_ForkJoin(t *testing.T) {
 
 	start := time.Now()
 	tb.ForkJoin(func(c *task.Awaitable) {
-		future1 = task.Await[int](c, GetNumber)
-		future2 = task.Await[int](c, GetNumber)
+		task1 = task.Await[int](c, GetNumber)
+		task2 = task.Await[int](c, GetNumber)
 	})
 
-	assert.NotNil(t, future1.Result)
-	assert.NoError(t, future1.Err)
-	log.Println(future1.Result)
+	assert.NotNil(t, task1.Result)
+	assert.NoError(t, task1.Err)
+	log.Println(task1.Result)
 
-	assert.NotNil(t, future2.Result)
-	assert.NoError(t, future2.Err)
-	log.Println(future2.Result)
+	assert.NotNil(t, task2.Result)
+	assert.NoError(t, task2.Err)
+	log.Println(task2.Result)
 
 	end := time.Since(start)
 	log.Println(end)

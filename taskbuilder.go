@@ -16,6 +16,7 @@ type Awaitable struct {
 	taskBuilder *Builder
 }
 
+// Await provides function to run
 func Await[T any](c *Awaitable, f func() (T, error)) *Task[T] {
 	fr := new(Task[T])
 
@@ -30,16 +31,15 @@ func Await[T any](c *Awaitable, f func() (T, error)) *Task[T] {
 	return fr
 }
 
-type Result[T any] struct {
-	Result T
-	Err    error
-}
-
+// Builder should be singleton or run in your entry point
+// MaxWorkers max parallel task
+// MaxCapacity max queued task non-blocking
 type Builder struct {
 	MaxWorkers  int
 	MaxCapacity int
 }
 
+// ForkJoin execute a function task list with fixed worked.
 func (tb *Builder) ForkJoin(f func(*Awaitable)) {
 	c := new(Awaitable)
 	c.taskBuilder = tb
