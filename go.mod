@@ -3,7 +3,7 @@ module github.com/arielsrv/taskpool
 go 1.19
 
 require (
-	github.com/alitto/pond v1.9.1
+	github.com/alitto/pond v1.9.2
 	github.com/stretchr/testify v1.9.0
 )
 
